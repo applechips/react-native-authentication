@@ -1,4 +1,4 @@
-import React, { component } from 'React';
+import React, { Component } from 'React';
 import { View } from 'react-native';
 import { Button, Card, CardSection } from './common';
 
@@ -6,8 +6,8 @@ class LoginForm extends Component {
   render() {
     return (
       <Card>
-        <CardSection></CardSection>
-        <CardSection></CardSection>
+        <CardSection />
+        <CardSection />
         <CardSection>
           <Button>
             Log In
