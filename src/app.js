@@ -6,7 +6,8 @@ import LoginForm from './components/LoginForm';
 
 
 class App extends Component {
-  state = { loggedIn: false };
+  // null = no idea if you're logged in or not.. so we'll find out!
+  state = { loggedIn: null };
 
   componentWillMount() {
     firebase.initializeApp({
@@ -26,12 +27,27 @@ class App extends Component {
       }
     });
   }
-  
+
+  renderContent() {
+    switch (this.state.loggedIn) {
+      case true:
+        return (
+          <Button onPress={() => firebase.auth().signOut()}>
+            Log Out
+          </Button>
+        );
+      case false:
+        return <LoginForm />;
+      default:
+        return <Spinner size='large' />;
+    }
+  }
+
   render() {
     return (
       <View>
       <Header headerText="Authentication"/>
-        <LoginForm />
+      {this.renderContent()}
       </View>
     );
   }
