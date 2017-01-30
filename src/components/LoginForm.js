@@ -9,6 +9,9 @@ class LoginForm extends Component {
   onButtonPress() {
     const { email, password } = this.state;
 
+    this.setState({ error: ''});
+    // if failed to login once and attempted to login again, the error message will clear
+
     firebase.auth().signInWithEmailAndPassword(email, password)
     .catch(() => {
       firebase.auth().createUserWithEmailAndPassword(email, password)
